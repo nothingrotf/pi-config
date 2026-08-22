@@ -1,0 +1,14 @@
+{
+  "subagents": {
+    "disableBuiltins": true,
+    "agentOverrides": {
+      "worker": {
+        "model": "bluebox-azure-openai/gpt-5_6-luna",
+        "thinking": "high",
+        "fallbackModels": [
+          "bluebox-azure-openai/gpt-5_6-terra"
+        ]
+      }
+    }
+  }
+}

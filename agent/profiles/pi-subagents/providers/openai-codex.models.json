@@ -1,0 +1,9 @@
+{
+  "provider": "openai-codex",
+  "refreshedAt": "2026-08-06T21:10:55.316Z",
+  "maxAgeDays": 7,
+  "sources": [
+    "runtime-registry"
+  ],
+  "models": []
+}

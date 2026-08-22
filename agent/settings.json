@@ -1,0 +1,67 @@
+{
+  "images": {
+    "blockImages": false
+  },
+  "terminal": {
+    "showImages": false
+  },
+  "hideThinkingBlock": true,
+  "quietStartup": true,
+  "steeringMode": "all",
+  "followUpMode": "all",
+  "collapseChangelog": true,
+  "enableInstallTelemetry": false,
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "editorPaddingX": 0,
+  "theme": "kaku-dark",
+  "defaultProjectTrust": "always",
+  "packages": [
+    "../../Workspaces/pi-fusiontui",
+    "../../Workspaces/pi-harness",
+    "npm:@gotgenes/pi-anthropic-auth",
+    "npm:pi-codex-goal",
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-access",
+    "npm:pi-subagents",
+    "npm:@ryan_nookpi/pi-extension-codex-fast-mode"
+  ],
+  "enabledModels": [
+    "anthropic/claude-opus-5",
+    "anthropic/claude-fable-5",
+    "anthropic/claude-sonnet-5",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-5.6-luna"
+  ],
+  "lastChangelogVersion": "0.84.2",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-fable-5",
+  "defaultThinkingLevel": "medium",
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 32000,
+    "keepRecentTokens": 12000
+  },
+  "fullscreenScrollbar": "always",
+  "subagents": {
+    "agentOverrides": {
+      "worker": {
+        "model": "bluebox-azure-openai/gpt-5_6-luna",
+        "thinking": "high",
+        "fallbackModels": [
+          "bluebox-azure-openai/gpt-5_6-terra"
+        ]
+      }
+    },
+    "disableBuiltins": true,
+    "watchdog": {
+      "main": {
+        "enabled": true
+      },
+      "enabled": true
+    }
+  },
+  "tuiMode": "fullscreen"
+}

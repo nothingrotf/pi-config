@@ -1,0 +1,17 @@
+{
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "model": "openai-codex/gpt-5.3-codex-spark",
+        "thinking": "medium",
+        "fallbackModels": [
+          "openai-codex/gpt-5.4-mini"
+        ]
+      },
+      "reviewer": {
+        "thinking": false,
+        "fallbackModels": false
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+auth.json
+models-store.json
+mcp-oauth/
+sessions/
+*.log
