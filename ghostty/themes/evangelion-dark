@@ -1,0 +1,25 @@
+# Evangelion Dark
+
+background = #0d0d18
+foreground = #e2e2f0
+cursor-color = #8b5cf6
+cursor-text = #0d0d18
+selection-background = #2d1a4a
+selection-foreground = #f5f5ff
+
+palette = 0=#12121f
+palette = 1=#ef4444
+palette = 2=#39ff14
+palette = 3=#fbbf24
+palette = 4=#8b5cf6
+palette = 5=#c084fc
+palette = 6=#22d3ee
+palette = 7=#e2e2f0
+palette = 8=#2a2a40
+palette = 9=#f87171
+palette = 10=#7aff5e
+palette = 11=#fcd34d
+palette = 12=#a78bfa
+palette = 13=#d8b4fe
+palette = 14=#67e8f9
+palette = 15=#f5f5ff

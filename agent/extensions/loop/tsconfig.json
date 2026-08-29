@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM"],
+    "skipLibCheck": true,
+    "paths": {
+      "@earendil-works/pi-coding-agent": [
+        "/Users/nothing/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/dist/index.d.ts"
+      ],
+      "typebox": [
+        "/Users/nothing/.bun/install/global/node_modules/typebox/build/index.d.mts"
+      ]
+    }
+  },
+  "include": ["index.ts", "policy.ts"]
+}

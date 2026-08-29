@@ -1,0 +1,77 @@
+{
+  "version": 3,
+  "skills": {
+    "app-store-preflight-compliance": {
+      "source": "RevylAI/greenlight",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/RevylAI/greenlight.git",
+      "skillPath": "codex-skill/SKILL.md",
+      "skillFolderHash": "d051acdbe5f35eee82a0c1c1c34129a23b2a0ef4",
+      "installedAt": "2026-08-12T07:49:32.462Z",
+      "updatedAt": "2026-08-12T07:49:32.462Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-08-06T06:36:17.383Z",
+      "updatedAt": "2026-08-06T06:36:17.383Z"
+    },
+    "gh-stack": {
+      "source": "github/gh-stack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/gh-stack.git",
+      "skillPath": "skills/gh-stack/SKILL.md",
+      "skillFolderHash": "c95c8b5b4dd850f3fef007b304428f5684f2fb87",
+      "installedAt": "2026-08-23T15:38:51Z",
+      "updatedAt": "2026-08-23T15:38:51Z"
+    },
+    "show-me": {
+      "source": "humanlayer/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/humanlayer/skills.git",
+      "skillPath": "plugins/show-me/skills/show-me/SKILL.md",
+      "skillFolderHash": "0bdb821a21e793a4f6f82a7078c052154447e5cc",
+      "installedAt": "2026-08-25T22:34:40.116Z",
+      "updatedAt": "2026-08-25T22:34:40.116Z"
+    },
+    "before-and-after": {
+      "source": "vercel-labs/before-and-after",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/before-and-after.git",
+      "skillPath": "skill/SKILL.md",
+      "skillFolderHash": "494b495538546c3a5594285e726970ff8f27a1ee",
+      "installedAt": "2026-08-27T20:01:51.555Z",
+      "updatedAt": "2026-08-27T20:01:51.555Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "82def67855a0d2aad7794207951820fa5422fdb0",
+      "installedAt": "2026-08-28T17:14:36.146Z",
+      "updatedAt": "2026-08-28T17:14:36.146Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}

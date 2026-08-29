@@ -15,7 +15,7 @@
     "anthropicExtraUsage": false
   },
   "editorPaddingX": 0,
-  "theme": "kaku-dark",
+  "theme": "hearth-dark",
   "defaultProjectTrust": "always",
   "packages": [
     "../../Workspaces/pi-fusiontui",
@@ -24,8 +24,11 @@
     "npm:pi-codex-goal",
     "npm:pi-mcp-adapter",
     "npm:pi-web-access",
-    "npm:pi-subagents",
-    "npm:@ryan_nookpi/pi-extension-codex-fast-mode"
+    "npm:@ryan_nookpi/pi-extension-codex-fast-mode",
+    "npm:timestamp-pi",
+    "npm:@pi-kaush/pi-inline-skill-identifier",
+    "git:github.com/nothingrotf/oh-my-pstack@f2b3ee59ff6925a336bee24612b7338f17090a09",
+    "npm:pi-subagents"
   ],
   "enabledModels": [
     "anthropic/claude-opus-5",
@@ -35,9 +38,9 @@
     "openai-codex/gpt-5.6-terra",
     "openai-codex/gpt-5.6-luna"
   ],
-  "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-fable-5",
+  "lastChangelogVersion": "0.84.4",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "medium",
   "compaction": {
     "enabled": true,
@@ -45,23 +48,8 @@
     "keepRecentTokens": 12000
   },
   "fullscreenScrollbar": "always",
-  "subagents": {
-    "agentOverrides": {
-      "worker": {
-        "model": "bluebox-azure-openai/gpt-5_6-luna",
-        "thinking": "high",
-        "fallbackModels": [
-          "bluebox-azure-openai/gpt-5_6-terra"
-        ]
-      }
-    },
-    "disableBuiltins": true,
-    "watchdog": {
-      "main": {
-        "enabled": true
-      },
-      "enabled": true
-    }
-  },
-  "tuiMode": "fullscreen"
+  "tuiMode": "fullscreen",
+  "markdown": {
+    "mermaid": "streaming"
+  }
 }

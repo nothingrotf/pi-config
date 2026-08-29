@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Relatório de Issues Concluídas - Agosto de 2026</title>
+<style>
+@page { size: A4; margin: 20mm 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  -webkit-print-color-adjust: exact;
+  color: #282a30;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.65;
+}
+.doc { margin: 0 auto; max-width: 660px; padding: 0 24px; }
+.doc-icon {
+  align-items: center;
+  background: #f0f3f9;
+  border-radius: 10px;
+  display: flex;
+  font-size: 22px;
+  height: 44px;
+  justify-content: center;
+  margin-bottom: 18px;
+  width: 44px;
+}
+h1 {
+  color: #101623;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+h2 {
+  color: #101623;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 28px 0 8px;
+  page-break-after: avoid;
+}
+p { margin: 0 0 10px; }
+strong { color: #101623; font-weight: 600; }
+ul { margin: 4px 0 12px; padding-left: 22px; }
+li { margin: 0 0 6px; }
+.issues { list-style: disc; }
+.issues li { break-inside: avoid; margin-bottom: 12px; }
+.issues .desc { color: #5c6370; display: block; margin-top: 2px; }
+.chip {
+  background: #f0f1f4;
+  border-radius: 5px;
+  padding: 1px 5px 2px 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.chip .check {
+  display: inline-block;
+  height: 12px;
+  margin: 0 3px -1.5px 0;
+  width: 12px;
+}
+.chip .key { color: #3d5af1; font-weight: 500; }
+.chip .title { color: #282a30; }
+.desc { color: #3c4149; }
+.muted { color: #6f7683; }
+footer {
+  border-top: 1px solid #e9eaee;
+  color: #9096a2;
+  font-size: 10px;
+  margin-top: 32px;
+  padding-top: 12px;
+}
+</style>
+</head>
+<body>
+<div class="doc">
+<div class="doc-icon">📣</div>
+<h1>Relatório de Issues Concluídas - Agosto de 2026</h1>
+<p>Período analisado: 1º a 27 de agosto de 2026.</p>
+
+<h2>Resumo executivo</h2>
+<p>Foram concluídas <strong>42 issues</strong> no período. O trabalho concentrou-se principalmente em melhorias fiscais, emissão de recibos, despesas e contas a receber.</p>
+<ul>
+<li><strong>42 issues</strong> foram atribuídas a Alan Guerra.</li>
+<li>Prioridades: <strong>3 urgentes</strong>, <strong>24 altas</strong>, <strong>10 médias</strong>, <strong>4 baixas</strong> e <strong>1 sem prioridade</strong>.</li>
+</ul>
+
+<h2>Principais entregas</h2>
+<ul>
+<li><strong>Fiscal e apuração:</strong> parâmetros fiscais versionados, cálculo do Carnê-Leão, redução da Lei 15.270/2025, memória de cálculo, validações e suíte de regressão.</li>
+<li><strong>Recibos:</strong> melhorias de emissão, compartilhamento, cancelamento, substituição, suporte a PF/PJ e correções de integração.</li>
+<li><strong>Financeiro:</strong> evolução de despesas, cartão de crédito, contas a receber e regras de pagamento.</li>
+<li><strong>Cadastros e interface:</strong> ajustes em contatos, convênios, classificação contábil e nomenclaturas.</li>
+<li><strong>Qualidade técnica:</strong> ajuste da execução de testes de unidade na CI.</li>
+</ul>
+
+<h2>Issues concluídas</h2>
+<ul class="issues" id="issue-list"></ul>
+
+<footer>Equipe Tech · Livro Caixa · Documento preparado para compartilhamento externo</footer>
+</div>
+<script>
+const CHECK = '<svg class="check" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="7" fill="#5e6ad2"/><path d="M4 7.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const issues = [
+["LIV-97","Definir o caminho de exceção para rendimentos do exterior e outras receitas após a supressão da Classificação Contábil","Criado um caminho dedicado para registrar rendimentos do exterior e outras receitas depois que a classificação contábil passou a ser automática.","Alta prioridade"],
+["LIV-99","Unificar o cálculo mensal do Carnê-Leão e aplicar a redução da Lei 15.270/2025 sobre o imposto total","O imposto mensal do Carnê-Leão agora é calculado sobre uma base única de rendimentos, com a redução da Lei 15.270/2025 aplicada sobre o imposto total.","Alta prioridade"],
+["LIV-114","Remover referências internas da interface de parâmetros fiscais","A tela de parâmetros fiscais deixou de exibir códigos e mensagens técnicas e mostra apenas rótulos em português.","Sem prioridade"],
+["LIV-109","Parâmetros fiscais: criar conjunto versionado, resolver por competência e migrar 2026","Os parâmetros fiscais de 2026 passaram a ser guardados em conjuntos versionados, aplicados conforme o mês de competência.","Alta prioridade"],
+["LIV-100","Parâmetros fiscais versionados: conjunto atômico, histórico e publicação segura no staff","Os parâmetros fiscais anuais foram centralizados com histórico completo, impedindo alterações silenciosas nos cálculos.","Alta prioridade"],
+["LIV-111","Parâmetros fiscais no staff: rascunho, comparação, validação e publicação","A equipe interna ganhou uma tela para preparar, comparar, validar e publicar novos parâmetros fiscais com segurança.","Alta prioridade"],
+["LIV-110","Apuração fiscal: preservar revisões imutáveis e vincular parâmetros e algoritmo","Cada apuração mensal agora fica registrada de forma definitiva, permitindo reproduzir qualquer resultado antigo.","Alta prioridade"],
+["LIV-27","Recibos: visualizar, imprimir, baixar, compartilhar, cancelar e substituir","O recibo ganhou as ações de visualizar, imprimir, baixar, compartilhar, cancelar e substituir direto no lançamento.","Alta prioridade"],
+["LIV-112","Apuração fiscal confunde a base do Carnê-Leão com o limite do Livro Caixa para receitas de PJ","Corrigida a apuração que misturava a base do Carnê-Leão com o limite do Livro Caixa em receitas de pessoa jurídica.","Urgente"],
+["LIV-92","Recibo: gerar PDF imutável e compartilhar por WhatsApp","O recibo agora gera um PDF definitivo, armazenado sem possibilidade de alteração e pronto para compartilhar por WhatsApp.","Alta prioridade"],
+["LIV-113","Recibo: remover antessala PF/PJ, avisos e nomenclatura fiscal","O fluxo de emissão ficou mais curto: a etapa de escolher PF ou PJ foi removida, pois o contato já traz essa informação.","Alta prioridade"],
+["LIV-104","Colisão de nomes na aba A Pagar do menu do cliente","A aba A Pagar do menu do cliente foi renomeada para deixar claro que se refere às faturas do escritório, não às contas a pagar do cliente.","Alta prioridade"],
+["LIV-85","Despesa no cartão: vincular à fatura, herdar o vencimento e baixar em cascata ao pagar a fatura","Despesas no cartão agora são vinculadas à fatura, herdam o vencimento dela e são baixadas automaticamente quando a fatura é paga.","Média prioridade"],
+["LIV-101","Memória de cálculo do mês: persistir e exibir dados de apuração e redução","A apuração passou a exibir a memória de cálculo completa do mês: base, alíquota, parcela a deduzir, imposto da tabela e redução.","Alta prioridade"],
+["LIV-73","Evolução Financeira: enriquecer o tooltip mensal","O gráfico de evolução financeira mostra agora, ao passar o mouse, o imposto do mês, a alíquota efetiva e o excesso de despesas do mês anterior.","Média prioridade"],
+["LIV-105","Aba Despesas assume o papel de Contas a Pagar","A aba Despesas passou a funcionar como contas a pagar: indicador de vencidas, visão padrão de contas em aberto e totais do período.","Alta prioridade"],
+["LIV-78","Classificação Contábil: regras para o campo Tipo da conta","No formulário de despesa, o campo Tipo da conta lista apenas grupos de despesa e é preenchido automaticamente ao escolher a conta.","Média prioridade"],
+["LIV-74","Contato estrangeiro: corrigir tratamento de CPF e passaporte","Contatos estrangeiros passaram a exibir o passaporte no lugar do CPF também nas listas, buscas e na seleção em recibos e despesas.","Alta prioridade"],
+["LIV-76","Corrigir data de recibo salva no dia anterior","Corrigido o defeito que salvava recibos, despesas e recebimentos com a data do dia anterior à informada.","Alta prioridade"],
+["LIV-102","Dedução de dependentes sem teto mensal","A dedução por dependente passou a respeitar o teto mensal de R$ 189,59 por dependente definido pela Receita Federal.","Alta prioridade"],
+["LIV-87","Convênios: implementar exclusão","A tabela de convênios ganhou a opção de excluir registros, que antes não existia.","Média prioridade"],
+["LIV-81","Épico de despesas, formas de pagamento e cartão de crédito","Entregue o conjunto completo de melhorias de despesas: forma de pagamento, recorrência, parcelamento e a área de cartão de crédito.","Alta prioridade"],
+["LIV-84","Área de cartão de crédito: cadastro e ciclo de faturas","Criada a área de Cartão de Crédito, com cadastro de cartões e controle do ciclo de faturas, com fechamento e vencimento.","Média prioridade"],
+["LIV-106","A Receber: painel de provisionamento","A tela A Receber ganhou um painel de provisionamento com totais a receber, vencidos e previsão do período.","Média prioridade"],
+["LIV-80","Despesa: incluir forma de pagamento","O formulário de nova despesa ganhou o campo de forma de pagamento, antes disponível apenas em recibos e contas a receber.","Média prioridade"],
+["LIV-77","Contas a Receber: padronizar campos e converter em recibo ao marcar como pago","A janela Novo A Receber ficou no mesmo padrão do recibo e, ao marcar como pago, o lançamento vira recibo automaticamente.","Média prioridade"],
+["LIV-83","Despesa recorrente e parcelada: gerar os lançamentos automaticamente","Despesas recorrentes e parceladas agora geram os lançamentos futuros automaticamente.","Média prioridade"],
+["LIV-82","Despesa: status e data de pagamento","A despesa ganhou status de pagamento, aberta ou paga, com registro da data de pagamento.","Alta prioridade"],
+["LIV-91","Recibo: segregar a emissão por tipo de pessoa","A emissão de recibo foi separada por tipo de pessoa: PF como padrão e PJ em janela própria com orientação.","Alta prioridade"],
+["LIV-89","Despesa: corrigir largura de campos no formulário","Ajustada a largura dos campos do formulário de despesa nas opções Parcelada e Recorrente.","Baixa prioridade"],
+["LIV-88","Recibo/Despesa: ampliar seletor de CST","O seletor de CST passou a ocupar a largura total da seção de classificação contábil.","Baixa prioridade"],
+["LIV-95","Validar coerência de conta contábil e tipo de contato","O sistema passou a validar a coerência entre a conta contábil e o tipo do contato, evitando distorções no arquivo do IRPF.","Alta prioridade"],
+["LIV-90","Corrigir recibo de PJ no pipeline do Receita Saúde","Recibos de pessoa jurídica deixaram de entrar no fluxo do Receita Saúde, que não aceita CNPJ.","Urgente"],
+["LIV-98","Corrigir redução da Lei 15.270/2025 para rendimentos de até R$ 5.000","Corrigido o cálculo da redução: o imposto agora zera para rendimentos de até R$ 5.000, conforme a calculadora oficial do Carnê-Leão.","Urgente"],
+["LIV-108","Executar testes de unidade de ledger, client e identity na CI","Os testes automatizados dos módulos de lançamentos, clientes e identidade passaram a rodar na esteira de integração contínua.","Alta prioridade"],
+["LIV-96","Derivar accountId no servidor a partir do contato","A conta contábil passou a ser definida pelo servidor a partir do contato, aumentando a segurança do processo.","Alta prioridade"],
+["LIV-93","Recibo: suprimir Classificação Contábil e derivar conta e tipo da conta","A seção Classificação Contábil foi removida do recibo; conta e tipo agora são assumidos automaticamente pelo tipo de cliente.","Alta prioridade"],
+["LIV-103","Suíte de regressão fiscal baseada na calculadora oficial do cliente","Criada uma bateria de testes de regressão fiscal baseada na calculadora oficial enviada pelo cliente.","Média prioridade"],
+["LIV-94","Conta a receber: suprimir Classificação Contábil e derivar a conta do tipo de cliente","A seção Classificação Contábil foi removida do contas a receber, com a conta assumida a partir do tipo de cliente.","Alta prioridade"],
+["LIV-86","Cadastros: separar Clientes e Fornecedores em duas telas","O cadastro foi separado em duas telas na navegação: Clientes e Fornecedores.","Baixa prioridade"],
+["LIV-79","Anexos: pedir confirmação antes da remoção","A remoção de anexos agora pede confirmação antes de excluir o arquivo, evitando remoções acidentais.","Média prioridade"],
+["LIV-75","Recibo: ocultar a seção de anexos na janela de novo recibo","A seção de anexos foi ocultada na janela de novo recibo e pode ser reativada quando o cliente precisar.","Baixa prioridade"]
+];
+document.getElementById('issue-list').innerHTML = issues.map(([key, title, desc, prio]) =>
+  `<li><span class="chip">${CHECK}<span class="key">${key}</span> <span class="title">${title}</span></span> <span class="muted">- ${prio}.</span><span class="desc">${desc}</span></li>`
+).join('');
+</script>
+</body>
+</html>

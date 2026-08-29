@@ -1,0 +1,27 @@
+font-size = 14
+font-family = JetBrains Mono
+
+background-opacity = 1
+unfocused-split-opacity = 1
+
+cursor-style = bar
+cursor-style-blink = false
+
+split-divider-color = #3b3b3b
+
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+window-subtitle = working-directory
+window-save-state = always
+macos-titlebar-style = tabs
+
+maximize = true
+quick-terminal-position = center
+
+# theme = dark:evangelion-dark,light:evangelion-light
+# theme = kaku-dark
+# theme = light:"GitHub Light Default",dark:"Flexoki Dark"
+theme = light:hearth-light,dark:hearth-dark
+
+keybind = alt+backspace=text:\x1b\x7f

@@ -1,6 +1,13 @@
 node_modules/
+.DS_Store
 auth.json
 models-store.json
 mcp-oauth/
 sessions/
+run-history.jsonl
+mcp-cache.json
+mcp-npx-cache.json
 *.log
+*.db
+*.mdb
+*.tmp

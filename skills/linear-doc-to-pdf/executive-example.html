@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>{{DOCUMENT_TITLE}}</title>
+<style>
+@page { size: A4; margin: 20mm 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  -webkit-print-color-adjust: exact;
+  background: #fff;
+  color: #282a30;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+.page {
+  break-after: page;
+  margin: 0 auto;
+  max-width: 660px;
+  min-height: 247mm;
+  padding: 0 24px;
+  position: relative;
+}
+.page:last-child { break-after: auto; }
+.doc-icon {
+  align-items: center;
+  background: #f0f3f9;
+  border-radius: 10px;
+  display: flex;
+  font-size: 22px;
+  height: 44px;
+  justify-content: center;
+  margin-bottom: 18px;
+  width: 44px;
+}
+h1 {
+  color: #101623;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+h2 {
+  color: #101623;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin: 22px 0 7px;
+}
+p { margin: 0 0 8px; }
+strong { color: #101623; font-weight: 600; }
+ul { margin: 3px 0 10px; padding-left: 22px; }
+li { margin: 0 0 4px; }
+.eyebrow {
+  color: #6f7683;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.lead { color: #3c4149; font-size: 11.5px; max-width: 570px; }
+.callout {
+  background: #f7f8fa;
+  border: 1px solid #e9eaee;
+  border-radius: 10px;
+  margin: 15px 0 17px;
+  padding: 12px 14px;
+}
+.callout strong { display: block; margin-bottom: 2px; }
+.issues { list-style: disc; }
+.issues li { break-inside: avoid; margin-bottom: 7px; }
+.issues .desc { color: #5c6370; display: block; margin-top: 2px; }
+.chip {
+  background: #f0f1f4;
+  border-radius: 5px;
+  padding: 1px 5px 2px 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.chip .check {
+  display: inline-block;
+  height: 12px;
+  margin: 0 3px -1.5px 0;
+  width: 12px;
+}
+.chip .key { color: #3d5af1; font-weight: 500; }
+.chip .title { color: #282a30; }
+.issue-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 14px; }
+.issue-tag {
+  background: #f0f1f4;
+  border-radius: 5px;
+  color: #3d5af1;
+  font-size: 9.5px;
+  font-weight: 500;
+  padding: 2px 6px;
+}
+.figure { margin: 15px 0 0; }
+.figure img {
+  border: 1px solid #dfe1e6;
+  border-radius: 10px;
+  display: block;
+  height: auto;
+  max-height: 172mm;
+  object-fit: contain;
+  object-position: top;
+  width: 100%;
+}
+.figure figcaption {
+  color: #6f7683;
+  font-size: 9.5px;
+  margin-top: 7px;
+}
+footer {
+  border-top: 1px solid #e9eaee;
+  bottom: 0;
+  color: #9096a2;
+  font-size: 9px;
+  left: 24px;
+  padding-top: 8px;
+  position: absolute;
+  right: 24px;
+}
+</style>
+</head>
+<body>
+<section class="page">
+<div class="doc-icon">{{DOCUMENT_ICON}}</div>
+<div class="eyebrow">{{CONTEXT_LABEL}}</div>
+<h1>{{DOCUMENT_TITLE}}</h1>
+<p class="lead">{{OUTCOME_PARAGRAPH}}</p>
+<div class="callout">
+<strong>{{CALLOUT_TITLE}}</strong>
+{{CALLOUT_TEXT}}
+</div>
+<h2>Principais entregas</h2>
+<ul>
+<li><strong>{{GROUP_1_TITLE}}:</strong> {{GROUP_1_TEXT}}</li>
+<li><strong>{{GROUP_2_TITLE}}:</strong> {{GROUP_2_TEXT}}</li>
+<li><strong>{{GROUP_3_TITLE}}:</strong> {{GROUP_3_TEXT}}</li>
+</ul>
+<h2>Issues concluídas</h2>
+<ul class="issues" id="issue-list"></ul>
+<footer>{{SUMMARY_FOOTER}}</footer>
+</section>
+
+<section class="page">
+<div class="eyebrow">Resultado final</div>
+<h1>{{VISUAL_TITLE}}</h1>
+<p class="lead">{{VISUAL_OUTCOME}}</p>
+<div class="issue-tags" id="visual-tags"></div>
+<figure class="figure">
+<img src="{{SCREENSHOT_PATH}}" alt="{{SCREENSHOT_ALT}}">
+<figcaption>{{SCREENSHOT_CAPTION}}</figcaption>
+</figure>
+<div class="callout">
+<strong>{{VISUAL_CALLOUT_TITLE}}</strong>
+{{VISUAL_CALLOUT_TEXT}}
+</div>
+<footer>{{VISUAL_FOOTER}} · Tema claro</footer>
+</section>
+
+<script>
+const CHECK = '<svg class="check" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="7" fill="#5e6ad2"/><path d="M4 7.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const issues = [
+["ABC-1", "{{ISSUE_1_TITLE}}", "{{ISSUE_1_DESCRIPTION}}"],
+["ABC-2", "{{ISSUE_2_TITLE}}", "{{ISSUE_2_DESCRIPTION}}"]
+];
+const visualIssueKeys = ["ABC-1", "ABC-2"];
+document.getElementById('issue-list').innerHTML = issues.map(([key, title, desc]) =>
+  `<li><span class="chip">${CHECK}<span class="key">${key}</span> <span class="title">${title}</span></span><span class="desc">${desc}</span></li>`
+).join('');
+document.getElementById('visual-tags').innerHTML = visualIssueKeys.map((key) =>
+  `<span class="issue-tag">${key}</span>`
+).join('');
+</script>
+</body>
+</html>
