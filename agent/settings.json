@@ -22,15 +22,23 @@
     "npm:pi-web-access",
     "npm:@ryan_nookpi/pi-extension-codex-fast-mode",
     "npm:@pi-kaush/pi-inline-skill-identifier",
-    "../../Workspaces/pi-anthropic-auth",
-    "../../Workspaces/pi-extensions/packages/hud",
-    "../../Workspaces/pi-extensions/packages/loop",
-    "../../Workspaces/pi-extensions/packages/goal",
-    "../../Workspaces/pi-extensions/packages/todo",
-    "../../Workspaces/pi-extensions/packages/ask",
-    "../../Workspaces/pi-extensions/packages/session-history",
-    "../../Workspaces/pi-extensions/packages/subagent",
-    "../../Workspaces/pi-extensions/packages/pstack"
+    "git:github.com/nothingrotf/pi-anthropic-auth",
+    "git:github.com/nothingrotf/pi-extensions"
+  ],
+  "npmCommand": ["bun"],
+  "extensions": [
+    "./git/github.com/nothingrotf/pi-extensions/packages/hud/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/loop/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/goal/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/todo/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/ask/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/session-history/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/subagent/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/src/index.ts"
+  ],
+  "skills": [
+    "./git/github.com/nothingrotf/pi-extensions/packages/loop/skills",
+    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/skills"
   ],
   "enabledModels": [
     "anthropic/claude-opus-5",

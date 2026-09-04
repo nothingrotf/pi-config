@@ -28,20 +28,24 @@ This repository stores the current personal configuration for Pi, agent skills, 
 6. Copy the contents of `zed/` to `~/.config/zed/`.
 7. Copy the contents of `ghostty/` to `~/.config/ghostty/`.
 8. Copy `fusiontui.json` to `~/.pi/fusiontui.json`.
-9. Restore the local package repositories before you start Pi.
-10. Adjust local package paths in `~/.pi/agent/settings.json` to match their locations.
+9. Install Bun 1.4.0 or later.
+10. Start Pi to install the configured GitHub and npm packages.
 11. Authenticate each provider again.
 
-## Local packages
+## GitHub packages
 
-The settings reference local repositories that this backup does not include:
+Pi clones these repositories into `~/.pi/agent/git/github.com/nothingrotf/`:
 
-- `nothingrotf/pi-extensions` supplies extensions and package skills, including `loop` and `pstack`.
-- `nothingrotf/pi-anthropic-auth` supplies the local authentication extension.
+- `nothingrotf/pi-extensions` supplies eight extensions and the `loop` and `pstack` skills.
+- `nothingrotf/pi-anthropic-auth` supplies the authentication extension.
 
-The snapshot preserves the original package paths. The shared skills in `skills/` do not include skills from these packages.
+The monorepo does not declare Pi resources at its root. Explicit resource paths select modules and skills from the clone that Pi manages.
 
-Pi installs the configured npm packages at startup. This repository excludes the local npm installation.
+The settings use Bun for package installation because the monorepo requires Bun workspace catalogs. No package depends on a local `Workspaces` checkout.
+
+Run `pi update --extensions` to update the GitHub packages.
+
+The shared skills in `skills/` do not include package skills. This repository excludes downloaded packages and installed dependencies.
 
 ## Excluded data
 
