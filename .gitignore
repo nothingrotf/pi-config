@@ -11,3 +11,14 @@ mcp-npx-cache.json
 *.db
 *.mdb
 *.tmp
+.env
+.env.*
+.npmrc
+*.pem
+*.key
+agent/state/
+agent/worktrees/
+agent/bin/
+agent/poteto/
+agent/trust.json
+agent/.fusion-usage-cache.json

@@ -1,9 +1,0 @@
-{
-  "subagents": {
-    "agentOverrides": {
-      "scout": {
-        "model": "gpt-5.3-codex-spark:high"
-      }
-    }
-  }
-}

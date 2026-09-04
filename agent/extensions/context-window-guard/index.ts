@@ -2,7 +2,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import {
 	buildGuardedMessages,
 	estimateFixedContextTokens,
-	estimateGuardMessageTokenUpperBound,
+	estimateGuardMessageTokens,
 	estimateGuardMessagesTokens,
 	type GuardMessage,
 } from "./policy.js";
@@ -14,6 +14,11 @@ const REQUEST_SAFETY_TOKENS = 8000;
 const MINIMUM_OUTPUT_BUDGET = 24000;
 const MINIMUM_MESSAGE_BUDGET = 12000;
 const STATUS_KEY = "context-window-guard";
+
+type OutputGuardState =
+	| { kind: "inactive" }
+	| { kind: "monitoring"; promptTokens: number; hardLimit: number }
+	| { kind: "aborting" };
 
 function isGuardedCodexModel(model: { provider: string; id: string } | undefined): boolean {
 	if (!model || model.provider !== "openai-codex") return false;
@@ -42,8 +47,7 @@ export default function (pi: ExtensionAPI) {
 	let compactionStarted = false;
 	let warningVisible = false;
 	let guardActive = false;
-	let activePromptTokens: number | undefined;
-	let outputAbortIssued = false;
+	let outputGuardState: OutputGuardState = { kind: "inactive" };
 	let lastGuard:
 		| {
 				before: number;
@@ -62,16 +66,14 @@ export default function (pi: ExtensionAPI) {
 		compactionStarted = false;
 		warningVisible = false;
 		guardActive = false;
-		activePromptTokens = undefined;
-		outputAbortIssued = false;
+		outputGuardState = { kind: "inactive" };
 		lastGuard = undefined;
 		if (isGuardedCodexModel(ctx.model)) resetStatus(ctx);
 	});
 
 	pi.on("model_select", (event, ctx) => {
 		guardActive = false;
-		activePromptTokens = undefined;
-		outputAbortIssued = false;
+		outputGuardState = { kind: "inactive" };
 		if (isGuardedCodexModel(event.model)) resetStatus(ctx);
 		else ctx.ui.setStatus(STATUS_KEY, undefined);
 	});
@@ -91,8 +93,7 @@ export default function (pi: ExtensionAPI) {
 			? Math.max(estimatedFullTokens, observedTokens ?? 0)
 			: (observedTokens ?? estimatedFullTokens);
 		if (!guardActive && currentTokens <= requestInputLimit) {
-			activePromptTokens = currentTokens;
-			outputAbortIssued = false;
+			outputGuardState = { kind: "monitoring", promptTokens: currentTokens, hardLimit };
 			ctx.ui.setStatus(STATUS_KEY, `context ${formatTokens(currentTokens)}/${formatTokens(hardLimit)}`);
 			return;
 		}
@@ -100,8 +101,7 @@ export default function (pi: ExtensionAPI) {
 		const messageBudget = Math.max(MINIMUM_MESSAGE_BUDGET, postGuardTarget - fixedTokens);
 		const guarded = buildGuardedMessages(messages, messageBudget);
 		const afterTokens = fixedTokens + guarded.estimatedMessageTokens;
-		activePromptTokens = afterTokens;
-		outputAbortIssued = false;
+		outputGuardState = { kind: "monitoring", promptTokens: afterTokens, hardLimit };
 		needsPersistentCompaction = true;
 		lastGuard = {
 			before: currentTokens,
@@ -121,14 +121,34 @@ export default function (pi: ExtensionAPI) {
 	});
 
 	pi.on("message_update", (event, ctx) => {
-		if (!isGuardedCodexModel(ctx.model) || activePromptTokens === undefined || outputAbortIssued) return;
+		if (!isGuardedCodexModel(ctx.model) || outputGuardState.kind !== "monitoring") return;
 		if (event.message.role !== "assistant") return;
-		const outputTokens = estimateGuardMessageTokenUpperBound(event.message as unknown as GuardMessage);
-		if (activePromptTokens + outputTokens < HARD_CONTEXT_LIMIT - REQUEST_SAFETY_TOKENS) return;
-		outputAbortIssued = true;
-		ctx.ui.setStatus(STATUS_KEY, "context output stopped ≤272k");
-		ctx.ui.notify("Context guard stopped the response before the 272k hard limit.", "warning");
+		const outputTokens = Math.max(
+			estimateGuardMessageTokens(event.message as unknown as GuardMessage),
+			event.message.usage.output,
+		);
+		if (outputGuardState.promptTokens + outputTokens < outputGuardState.hardLimit - REQUEST_SAFETY_TOKENS) return;
+		const hardLimit = outputGuardState.hardLimit;
+		outputGuardState = { kind: "aborting" };
+		ctx.ui.setStatus(STATUS_KEY, `context output stopped ≤${formatTokens(hardLimit)}`);
+		ctx.ui.notify(`Context guard stopped the response before the ${formatTokens(hardLimit)} hard limit.`, "warning");
 		ctx.abort();
+	});
+
+	pi.on("message_end", (event) => {
+		if (event.message.role !== "assistant") return;
+		const guardAborted = outputGuardState.kind === "aborting";
+		outputGuardState = { kind: "inactive" };
+		const messageModel = { provider: event.message.provider, id: event.message.model };
+		if (!guardAborted || !isGuardedCodexModel(messageModel) || event.message.stopReason !== "aborted") return;
+		return {
+			message: {
+				...event.message,
+				stopReason: "length",
+				rawStopReason: "context-window-guard",
+				errorMessage: undefined,
+			},
+		};
 	});
 
 	pi.on("session_compact", (_event, ctx) => {
@@ -136,8 +156,7 @@ export default function (pi: ExtensionAPI) {
 		compactionStarted = false;
 		warningVisible = false;
 		guardActive = false;
-		activePromptTokens = undefined;
-		outputAbortIssued = false;
+		outputGuardState = { kind: "inactive" };
 		lastGuard = undefined;
 		if (isGuardedCodexModel(ctx.model)) resetStatus(ctx);
 	});

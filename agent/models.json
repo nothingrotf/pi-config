@@ -12,6 +12,15 @@
           "contextWindow": 272000
         }
       }
+    },
+    "anthropic": {
+      "modelOverrides": {
+        "claude-fable-5-1": {
+          "headers": {
+            "user-agent": "claude-cli/2.1.258 (external, cli)"
+          }
+        }
+      }
     }
   }
 }

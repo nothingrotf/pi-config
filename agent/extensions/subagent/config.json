@@ -1,5 +1,10 @@
 {
   "inlineToolDisplay": "summary",
   "fleetViewPlacement": "aboveEditor",
-  "asyncWidget": false
+  "toolDescriptionMode": "compact",
+  "asyncWidget": false,
+  "parallel": {
+    "maxTasks": 16,
+    "concurrency": 8
+  }
 }
