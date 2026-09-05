@@ -15,30 +15,15 @@
     "anthropicExtraUsage": false
   },
   "editorPaddingX": 0,
-  "theme": "empryo-dark",
+  "theme": "neosh",
   "defaultProjectTrust": "always",
   "packages": [
     "npm:pi-mcp-adapter",
     "npm:pi-web-access",
-    "npm:@ryan_nookpi/pi-extension-codex-fast-mode",
     "npm:@pi-kaush/pi-inline-skill-identifier",
     "git:github.com/nothingrotf/pi-anthropic-auth",
-    "git:github.com/nothingrotf/pi-extensions"
-  ],
-  "npmCommand": ["bun"],
-  "extensions": [
-    "./git/github.com/nothingrotf/pi-extensions/packages/hud/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/loop/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/goal/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/todo/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/ask/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/session-history/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/subagent/src/index.ts",
-    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/src/index.ts"
-  ],
-  "skills": [
-    "./git/github.com/nothingrotf/pi-extensions/packages/loop/skills",
-    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/skills"
+    "git:github.com/nothingrotf/pi-extensions",
+    "npm:@sting8k/pi-vcc"
   ],
   "enabledModels": [
     "anthropic/claude-opus-5",
@@ -51,7 +36,7 @@
   "subagents": {
     "disableBuiltins": true
   },
-  "lastChangelogVersion": "0.85.0",
+  "lastChangelogVersion": "0.85.1",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6-astra",
   "defaultThinkingLevel": "medium",
@@ -65,5 +50,24 @@
   "markdown": {
     "mermaid": "streaming"
   },
-  "outputPad": 3
+  "outputPad": 1,
+  "extensions": [
+    "./git/github.com/nothingrotf/pi-extensions/packages/fast-mode/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/hud/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/loop/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/goal/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/todo/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/ask/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/session-history/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/subagent/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/src/index.ts",
+    "./git/github.com/nothingrotf/pi-extensions/packages/compact/src/index.ts"
+  ],
+  "skills": [
+    "./git/github.com/nothingrotf/pi-extensions/packages/loop/skills",
+    "./git/github.com/nothingrotf/pi-extensions/packages/pstack/skills"
+  ],
+  "npmCommand": [
+    "bun"
+  ]
 }

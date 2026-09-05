@@ -6,7 +6,9 @@ This repository stores the current personal configuration for Pi, agent skills, 
 
 - `agent/settings.json` stores the main Pi settings, packages, models, and interface options.
 - `agent/models.json` stores provider model overrides.
-- `agent/AGENTS.md` stores the global agent instructions.
+- `agent/pi-vcc-config.json` stores VCC compaction preferences.
+- `home/AGENTS.md` stores the global agent instructions from `~/AGENTS.md`.
+- `agent/AGENTS.md` tells Pi to load `~/AGENTS.md` when it is absent from the context.
 - `agent/APPEND_SYSTEM.md` stores the appended system prompt.
 - `agent/extensions/` stores local Pi extensions.
 - `agent/themes/` stores Pi themes.
@@ -20,23 +22,24 @@ This repository stores the current personal configuration for Pi, agent skills, 
 
 ## Restore
 
-1. Copy the contents of `agent/` to `~/.pi/agent/`.
-2. Copy the contents of `skills/` to `~/.agents/skills/`.
-3. Copy the contents of `commands/` to `~/.agents/commands/`.
-4. Copy the contents of `rules/` to `~/.agents/rules/`.
-5. Copy `skill-lock.json` to `~/.agents/.skill-lock.json`.
-6. Copy the contents of `zed/` to `~/.config/zed/`.
-7. Copy the contents of `ghostty/` to `~/.config/ghostty/`.
-8. Copy `fusiontui.json` to `~/.pi/fusiontui.json`.
-9. Install Bun 1.4.0 or later.
-10. Start Pi to install the configured GitHub and npm packages.
-11. Authenticate each provider again.
+1. Copy `home/AGENTS.md` to `~/AGENTS.md`.
+2. Copy the contents of `agent/` to `~/.pi/agent/`.
+3. Copy the contents of `skills/` to `~/.agents/skills/`.
+4. Copy the contents of `commands/` to `~/.agents/commands/`.
+5. Copy the contents of `rules/` to `~/.agents/rules/`.
+6. Copy `skill-lock.json` to `~/.agents/.skill-lock.json`.
+7. Copy the contents of `zed/` to `~/.config/zed/`.
+8. Copy the contents of `ghostty/` to `~/.config/ghostty/`.
+9. Copy `fusiontui.json` to `~/.pi/fusiontui.json`.
+10. Install Bun 1.4.0 or later.
+11. Start Pi to install the configured GitHub and npm packages.
+12. Authenticate each provider again.
 
 ## GitHub packages
 
 Pi clones these repositories into `~/.pi/agent/git/github.com/nothingrotf/`:
 
-- `nothingrotf/pi-extensions` supplies eight extensions and the `loop` and `pstack` skills.
+- `nothingrotf/pi-extensions` supplies ten extensions and the `loop` and `pstack` skills.
 - `nothingrotf/pi-anthropic-auth` supplies the authentication extension.
 
 The monorepo does not declare Pi resources at its root. Explicit resource paths select modules and skills from the clone that Pi manages.
